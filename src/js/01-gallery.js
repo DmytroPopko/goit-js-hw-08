@@ -7,7 +7,10 @@ function makeGallery() {
   const cardsMarkup = createGallery(galleryItems);
 
   galleryContainer.insertAdjacentHTML('beforeend', cardsMarkup);
-  new simplelightbox('.gallery a');
+  new SimpleLightbox('.gallery a', {
+    captionsData: 'alt',
+    captionDelay: 250,
+  });
 
   function createGallery(galleryItems) {
     return galleryItems
