@@ -8,10 +8,8 @@ function saveTimePlayer() {
 
   player.on(
     'timeupdate',
-    throttle(function (parm) {
-      console.log(parm.seconds);
-
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(parm.seconds));
+    throttle(function ({ seconds }) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(seconds));
     }, 1000)
   );
 

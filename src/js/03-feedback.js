@@ -12,26 +12,26 @@ function saveFeedback() {
     input: document.querySelector('.feedback-form  input'),
   };
 
-  populateTextarea(formData);
+  populateForm(formData);
 
   refs.form.addEventListener('submit', onFormSubmit);
   refs.form.addEventListener('input', throttle(onFormInput, 0));
 
-  function onFormInput(e) {
-    console.dir(e.target);
-    formData[e.target.name] = e.target.value;
-    console.log(formData);
+  function onFormInput({ target }) {
+    formData[target.name] = target.value;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
   }
 
   function onFormSubmit(evt) {
     evt.preventDefault();
 
+    console.log(formData);
+
     evt.currentTarget.reset();
     localStorage.removeItem(STORAGE_KEY);
   }
 
-  function populateTextarea({ message, email }) {
+  function populateForm({ message, email }) {
     refs.textarea.value = message ? message : '';
     refs.input.value = email ? email : '';
   }
